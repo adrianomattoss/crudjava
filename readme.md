@@ -5,5 +5,5 @@ Foi desenvolvido um CRUD feito em Java para ser executado no terminal, utiliza r
 Para executar o programa utilize o seguinte comando no terminal:
 "javac projetocrud.java classes\dados.java classes\pessoa.java classes\aluno.java"
 
-Em seguido execute:
+Em seguida execute:
 "java projetocrud.java"
