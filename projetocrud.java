@@ -56,7 +56,7 @@ public class projetocrud {
 	private static void inserirCabecalho(int opcao) {
 
 		System.out.println("");
-		System.out.println("+======================================================================+");
+		System.out.println("========================================================================");
 			
 		switch (opcao) {
 			case 0 :
@@ -276,13 +276,10 @@ public class projetocrud {
 
 			}	
 
-			//digitadoAlteracao.close(); MÃO CONSIGO FECHAR SEM DAR ERRO, DESCOBRIR SOLUÇÃO ***
+			//digitadoAlteracao.close(); PROCURAR SOLUÇÃO ***
 
 		} catch (Exception e){ 
 			System.out.println("Ocorreu um erro na alteração do cadastro, favor entrar em contato com desenvolvedor.");
-
-		} finally {
-			//IMPLEMENTAR METODO TEMPORALIZADOR ***
 		}
 	}
 
@@ -294,18 +291,20 @@ public class projetocrud {
 
 		Scanner digitadoExclusao = new Scanner (System.in);
 
-		while (!respostaValida) { //enquanto a resposta for invalida faz as solicicao
+		try {
 
-			System.out.print("> Digite o codigo a ser excluido: "); 
-			
-			codigo = Integer.parseInt(digitadoExclusao.next());
+			while (!respostaValida) { //enquanto a resposta for invalida faz as solicição
 
-			System.out.print("> Tem certeza que deseja excluir o registro com o codigo [" + codigo + "]? " );
+				System.out.print("> Digite o codigo a ser excluido: "); 
+				
+				codigo = Integer.parseInt(digitadoExclusao.next());
 
-			res = digitadoExclusao.next();
+				System.out.print("> Tem certeza que deseja excluir o registro [" + codigo + "]? " );
 
-			confirmar = (res.equals("S") || res.equals("s"));
-			cancelar = (res.equals("N") || res.equals("n"));	
+				res = digitadoExclusao.next();
+
+				confirmar = (res.equals("S") || res.equals("s"));
+				cancelar = (res.equals("N") || res.equals("n"));	
 
 				if (confirmar) {
 					
@@ -338,10 +337,13 @@ public class projetocrud {
 
 			}
 
+		} catch (Exception e) {
+			System.out.println("Erro ao tentar efetuar a exclusao. Favor entrar em contato com desenvolvedor");
+		}
+
 		return codigo;
 	}
 	
-
 	public static void main (String arg[]) {
 
 		boolean encerraPrograma = false;
