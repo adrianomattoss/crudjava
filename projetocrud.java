@@ -44,11 +44,32 @@ public class projetocrud {
 
 	private static boolean validaNota (String texto) {
 		//CRIAR VALIDAÇÃO DE VALOR ENTRE 0 E 10, VALIDACAO DA ",", DIGITACÃO APENAS DE NUMERO 
-		boolean validaNota = false;
+		boolean validaNota = true;
+		float nota = 0;
 
 		texto = texto.replaceAll(" ","");
+		
+		if (texto != "") {
 
-		validaNota = texto.matches("[0-9]*");
+			validaNota = texto.matches("[0-9]*");
+	
+			if (!validaNota) {
+
+				validaNota = false;
+				System.out.println("Nota final invalida, digite apenas numeros entre 0 e 100.");
+				System.out.println("");
+	
+			} else {
+	
+				nota = Float.parseFloat(texto);
+			
+				if ((nota < 0) || (nota > 100)) {
+					validaNota = false;
+					System.out.println("Valor da nota deve ser entre 0 e 100.");
+					System.out.println("");
+				} 
+			}
+		}
 
 		return validaNota;
 	}
@@ -203,11 +224,7 @@ public class projetocrud {
 					inserir.add(valorDigitado);
 					valorValido = true;
 
-				} else {
-					System.out.println("Nota final invalida, digite novamente...");	
-					System.out.println("");
-
-				}
+				} 
 			}
 
 			System.out.println("");
@@ -338,7 +355,7 @@ public class projetocrud {
 			}
 
 		} catch (Exception e) {
-			System.out.println("Erro ao tentar efetuar a exclusao. Favor entrar em contato com desenvolvedor");
+			System.out.println("Erro ao tentar efetuar a exclusao do registro. Favor entrar em contato com desenvolvedor");
 		}
 
 		return codigo;
