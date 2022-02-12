@@ -363,41 +363,61 @@ public class projetocrud {
 	
 	public static void main (String arg[]) {
 
-		boolean encerraPrograma = false;
 		String selecionado = "";
-		
-		do { //FAZER VALIDAÇÃO DA SELECAO SOMENTE ANTES DE INICIAR ***
+		boolean encerraPrograma = false;
+
+		do {
 		
 			inserirCabecalho(0);
 
 			selecionado = digitado.nextLine(); 
 
-			if (selecionado.equals("c")) {
+			if (selecionado.equals("C") || selecionado.equals("c")) {
 			
 				inserirCabecalho(1);
 				objDados.cadastrarPessoas(inserir());
 
-			} else if (selecionado.equals("a")) {
+			} else if (selecionado.equals("A") || selecionado.equals("a")) {
 
 				inserirCabecalho(2);
 				alterar();
 
-			} else if (selecionado.equals("x")) {
+			} else if (selecionado.equals("X") || selecionado.equals("x")) {
 
 				inserirCabecalho(3);	
 				objDados.excluirRegristo(excluir());
 
-			} else if (selecionado.equals("l")) {
+			} else if (selecionado.equals("L") || selecionado.equals("l")) {
 
 				inserirCabecalho(4);
 				System.out.println(objDados.listarRegistros());
 			
-			} else if (selecionado.equals("e")) {
+			} else if (selecionado.equals("E") || selecionado.equals("e")) {
 
-				System.out.println("Tem certeza que deseja sair do programa? ");
-				encerraPrograma = true; //NÃO FUNCIONA VERIFICAR ***
-			
-			};
+				System.out.println("Tem certeza que deseja sair do programa? (S/N)");
+
+				selecionado = digitado.nextLine(); 
+
+				while (encerraPrograma == false) {
+
+					if (selecionado.equals("S") || selecionado.equals("s")) {
+						encerraPrograma = true;
+
+					} else if (!selecionado.equals("N") && !selecionado.equals("n")) {
+						
+						System.out.println("Valor informado esta incorreto. Digite S ou N.");
+
+						selecionado = digitado.nextLine(); 
+
+					} else { 
+						break;
+					}
+				}	
+
+			} else {
+
+				System.out.println("Opcao invalida, selecionar a opcao correta.");
+			}
 
 		} while (encerraPrograma == false);
 	}	
