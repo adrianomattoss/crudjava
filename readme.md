@@ -1,6 +1,6 @@
 Esse projeto foi criado para participação do curso de Java +praTi. 
 
-SOBRE O DESAFIO
+DESAFIO
 --------------------------------------------------------------------------------------------------------
 
 Criar um CRUD (Create, Read , Update, Delete) de pessoas/alunos no terminal usando somente Java:
