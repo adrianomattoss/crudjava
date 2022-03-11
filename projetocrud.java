@@ -2,6 +2,8 @@ import classes.dados;
 
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class projetocrud {
@@ -13,7 +15,7 @@ public class projetocrud {
 
 		boolean nomeValido = false;
 
-		texto = texto.replaceAll(" ","");
+		//texto = texto.replaceAll(" ","");
 		
 		nomeValido = texto.matches("[A-Za-z]*");
 
@@ -23,12 +25,43 @@ public class projetocrud {
 	private static boolean validaTelefone (String texto) {
 		
 		boolean telefoneValido = false;
+		/*String regex = "";
+		String texto = "";
+		Pattern pattern = Pattern.Compile(regex);
+		Matcher matcher = Pattner.matcher(texto);*/
 
 		texto = texto.replaceAll(" ","");
 
-		telefoneValido = texto.matches("[0-9]*");
+		try {
+
+			if (texto.matches("[0-9]*")) {	
+
+				if (texto.length() != 11) {
+
+					System.out.println("Telefone deve ter o DDD + 9 digitos");
+					telefoneValido = false;
+
+				} else {
+
+					if (texto.matches("^((\\+\\d{2}\\s)?\\(\\d{2}\\)\\s?\\d{4}\\d?\\-\\d{4})?$")) 
+						telefoneValido = true;
+
+				}
+
+			} else {
+
+				System.out.println("Digite apenas numeros.");
+
+			}
+
+
+		} catch (Exception e) {
+			
+			System.out.println("Erro ao tentar fazer a validacao do telefone.");
+		}
 
 		return telefoneValido;
+
 	}
 
 	private static boolean validaDataNascimento (String texto) {
@@ -43,7 +76,7 @@ public class projetocrud {
 	}
 
 	private static boolean validaNota (String texto) {
-		//CRIAR VALIDAÇÃO DE VALOR ENTRE 0 E 10, VALIDACAO DA ",", DIGITACÃO APENAS DE NUMERO 
+		 
 		boolean validaNota = true;
 		float nota = 0;
 
@@ -107,7 +140,7 @@ public class projetocrud {
 		System.out.println("");
 	}
 
-	public static boolean continuarEdicao(boolean editar) {
+	private static boolean continuarEdicao(boolean editar) {
 
 		boolean respostaValida, encerraCadastro = false;	
 		String res = "";	
@@ -173,20 +206,16 @@ public class projetocrud {
 
 			while (!valorValido) {
 
-				System.out.print("> Digite o Telefone: "); 
+				System.out.print("> Digite o Telefone (DDD + Numero): "); 
 				
 				valorDigitado = digitado.nextLine();
 
-				if (validaTelefone(valorDigitado)) {
+				//if (validaTelefone(valorDigitado)) {
 
 					inserir.add(valorDigitado);
 					valorValido = true;
 
-				} else {
-					System.out.println("Telefone invalido, digite novamente...");	
-					System.out.println("");
-
-				}
+				//} 
 			}
 
 			System.out.println("");
